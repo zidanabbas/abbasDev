@@ -7,6 +7,8 @@ import Profile from "./components/Pages/Profile";
 import About from "./components/Pages/About";
 import Project from "./components/Pages/Project";
 import NotFound from "./components/Pages/NotFound";
+import Client from "./components/Pages/Client";
+import Portofolio from "./components/Pages/Portofolio";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,16 @@ const router = createBrowserRouter([
   {
     path: "/project",
     element: <Project />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/portofolio",
+    element: <Portofolio />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/clients",
+    element: <Client />,
     errorElement: <NotFound />,
   },
 ]);
