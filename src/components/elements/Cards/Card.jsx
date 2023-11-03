@@ -10,7 +10,6 @@ const Card = ({ src, alt, title, text, href, textLink }) => {
         </h3>
         <p className="mx-3 pb-5 text-base font-medium text-dark">
           {text}
-
           <a href={href} className="hover:text-primary mx-1">
             {textLink}
           </a>
