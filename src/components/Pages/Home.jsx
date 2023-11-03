@@ -4,7 +4,18 @@ import Button from "../elements/Button/Button";
 import Card from "../elements/Cards/Card";
 import Form from "../elements/Form/Form";
 import Footer from "../elements/Footer/Footer";
+import { useState, useEffect } from "react";
+import { getUsers } from "../../services/users.service";
+
 const Home = () => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    getUsers((data) => {
+      setProjects(data);
+    });
+  });
+
   return (
     <>
       <Header />
@@ -133,20 +144,21 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className="flex w-full flex-wrap justify-center px-4 xl:mx-auto xl:w-10/12">
-            <div className="mb-12 p-4 md:w-1/2" data-aos="flip-left">
-              {/* Card */}
-              <Card
-                src={"../src/assets/images/portofolio/landing-page.png"}
-                alt={"Landing Page"}
-                title={"Landing Page"}
-                text={
-                  "This is a mobile landing page product design mockup I made with"
-                }
-                href={"https://www.figma.com/"}
-                textLink={"Figma"}
-              />
-            </div>
+          <div className="flex w-full flex-wrap justify-center px-4 xl:mx-auto xl:w-10/12 border">
+            {projects.map((project) => (
+              <div className="mb-12 p-4 md:w-1/2" data-aos="flip-left">
+                {/* Card */}
+                <Card
+                  key={project.id}
+                  src={project.image}
+                  alt={project.detail}
+                  title={project.title}
+                  text={project.detail}
+                  href={project.link}
+                  textLink={project.title}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
